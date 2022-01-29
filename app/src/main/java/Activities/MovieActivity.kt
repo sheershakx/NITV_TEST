@@ -1,11 +1,15 @@
 package Activities
 
 import Adapters.movieInfoAdapter
+import LocalStorage.DatabaseHelper
 import Models.MovieModel
 import RetrofitFiles.MovieAPI
+import android.app.ProgressDialog
+import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.GridLayout
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -34,8 +38,9 @@ class MovieActivity : AppCompatActivity() {
         /* Start your code here */
         //set header text of activity through layout  header
         binding.headerlayout.tvHeaderText.text = "Movies List"
-
-        //fetch data from retrofit
+        binding.rvMovieList.layoutManager = GridLayoutManager(applicationContext, 3)
+        //fetch data from retrofit || localDB
+        getLocalRecord()
         fetchData()
 
 
@@ -54,14 +59,18 @@ class MovieActivity : AppCompatActivity() {
 
 
                     Log.d(TAG, "onResponse: " + response.code())
+                    getLocalRecord()
+
                     return
                 }
 
                 //assigning data to adapter and passing adapter to recyclerview
-                binding.rvMovieList.layoutManager = GridLayoutManager(applicationContext, 3)
+
                 var moviedata: MovieModel = response.body()!!
+
                 val adapter = movieInfoAdapter(moviedata)
                 binding.rvMovieList.adapter = adapter
+                saveLocalRecord(moviedata)
 
 
             }
@@ -69,9 +78,29 @@ class MovieActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<MovieModel>?, t: Throwable?) {
                 Log.e(TAG, "onFailure: " + t?.message)
+                getLocalRecord()
 
             }
         })
+    }
+
+    fun saveLocalRecord(movieModel: MovieModel) {
+
+        val db: SQLiteDatabase? = DatabaseHelper(this).writableDatabase
+        val databaseHelper: DatabaseHelper = DatabaseHelper(this)
+        databaseHelper.deleteMovies()
+        databaseHelper.addMovies(movieModel)
+
+    }
+
+    fun getLocalRecord() {
+        val databaseHelper: DatabaseHelper = DatabaseHelper(this)
+        var movieDetails: List<MovieModel.MovieOtherDetails> = databaseHelper.viewMovies()
+        var movieModel: MovieModel = MovieModel(movieDetails)
+        val adapter = movieInfoAdapter(movieModel)
+        binding.rvMovieList.adapter = adapter
+
+
     }
 }
 

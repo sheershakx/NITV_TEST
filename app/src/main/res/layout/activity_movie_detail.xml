@@ -71,11 +71,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:drawableStart="@drawable/ic_date"
-                android:drawablePadding="5dp"
                 android:id="@+id/tvMovieReleaseDate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_date"
+                android:drawablePadding="5dp"
                 android:hint="2021-02-12"
 
 
@@ -152,10 +152,11 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:hint="Movie Overview..."
+                android:paddingEnd="3dp"
                 android:justificationMode="inter_word"
                 android:lineSpacingExtra="4dp"
                 android:padding="5dp"
-                android:scrollbars="vertical"
+
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

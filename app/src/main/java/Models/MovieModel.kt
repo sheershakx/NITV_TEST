@@ -6,10 +6,10 @@ import com.google.gson.annotations.SerializedName
 *  */
 data class MovieModel(
     @SerializedName("results")
-    val Result: List<MovieOtherDetails>,
+    var Result: List<MovieOtherDetails>,
+
 
     ) {
-
 
     data class MovieOtherDetails(
         @SerializedName("original_title")

@@ -11,6 +11,7 @@ import com.thex.nitv_test.databinding.ActivityMovieDetailBinding
 import android.widget.Toast
 import kotlin.concurrent.thread
 import android.app.Activity
+import android.text.method.ScrollingMovementMethod
 import android.view.KeyEvent
 
 
@@ -41,16 +42,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
         }
 
-        //set values to respective views with data from intent
-
-        binding.movieDetailHeader.tvHeaderText.text = MovieTitle
-        Glide.with(applicationContext).load("https://image.tmdb.org/t/p/w185$PosterPath")
-            .placeholder(R.drawable.imgplaceholder).into(binding.imgPosterImageDetail)
-        binding.tvMovieTitleDetail.text = MovieTitle
-        binding.tvMovieOverview.text = MovieOverview
-        binding.tvMovieReleaseDate.text = ReleaseDate
-        binding.tvMoviePopularity.text = MoviePopularity.toString()
-        binding.tvMovieVote.text = VoteAverage.toString()
+        setData()
 
 
         //start video playing process in new Thread with runOnUIThread to push updated to UI
@@ -69,8 +61,20 @@ class MovieDetailActivity : AppCompatActivity() {
 
     }
 
+    private fun setData() {
+        binding.movieDetailHeader.tvHeaderText.text = MovieTitle
+        Glide.with(applicationContext).load("https://image.tmdb.org/t/p/w185$PosterPath")
+            .placeholder(R.drawable.imgplaceholder).into(binding.imgPosterImageDetail)
+        binding.tvMovieTitleDetail.text = MovieTitle
+        binding.tvMovieOverview.text = MovieOverview
+        binding.tvMovieOverview.movementMethod = ScrollingMovementMethod()
 
-    fun videoPlayer() {     //function to play video through URL to videoview
+        binding.tvMovieReleaseDate.text = ReleaseDate
+        binding.tvMoviePopularity.text = MoviePopularity.toString()
+        binding.tvMovieVote.text = VoteAverage.toString()
+    }
+
+    private fun videoPlayer() {     //function to play video through URL to videoview
 
         var mediaController = MediaController(this)
         mediaController.setAnchorView(binding.videoPlayer)

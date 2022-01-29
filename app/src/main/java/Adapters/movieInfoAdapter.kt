@@ -32,6 +32,8 @@ class movieInfoAdapter(private val movieData: MovieModel) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val context: Context = holder.itemView.context
         val movieList = movieData.Result[position]
+        //allow marquee selection to title
+        holder.titleView.isSelected = true
         //set movie title in recyclerview layout file
         holder.titleView.text = movieList.MovieTitle
         //set poster image (through glide) in recyclerview layout file
@@ -51,7 +53,10 @@ class movieInfoAdapter(private val movieData: MovieModel) :
             intent.putExtra("ReleaseDate", movieList.ReleaseDate)
             intent.putExtra("Popularity", movieList.Popularity)
             intent.putExtra("VoteAverage", movieList.VoteAverage)
-            intent.putExtra("Overview", movieList.MovieOverview)
+            intent.putExtra(
+                "Overview",
+                movieList.MovieOverview
+            )
             //bundle for passing TransitionAnimaition to next activity
             var bundle: Bundle =
                 ActivityOptions.makeSceneTransitionAnimation(context as Activity?).toBundle()
@@ -70,6 +75,7 @@ class movieInfoAdapter(private val movieData: MovieModel) :
         //assigning views of recyclerview grid layout file
         val posterView: ImageView = itemView.findViewById(R.id.imgPosterImage)
         val titleView: TextView = itemView.findViewById(R.id.tvMovieTitle)
+
 
     }
 }
