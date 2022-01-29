@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    tools:context="Activities.MovieDetailActivity">
+
+    <include
+        android:id="@+id/movieDetailHeader"
+        layout="@layout/activityheaderlayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+
+        android:id="@+id/cardVideoPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+
+        android:layout_margin="2dp"
+        app:cardCornerRadius="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/movieDetailHeader">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <VideoView
+                android:id="@+id/videoPlayer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardMovieDetails"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="2dp"
+        app:cardCornerRadius="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardVideoPlayer">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgPosterImageDetail"
+                android:layout_width="130dp"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+                android:scaleType="fitXY"
+
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:drawableStart="@drawable/ic_date"
+                android:drawablePadding="5dp"
+                android:id="@+id/tvMovieReleaseDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="2021-02-12"
+
+
+                app:layout_constraintEnd_toEndOf="@id/imgPosterImageDetail"
+                app:layout_constraintStart_toStartOf="@id/imgPosterImageDetail"
+                app:layout_constraintTop_toBottomOf="@id/imgPosterImageDetail" />
+
+
+            <TextView
+                android:id="@+id/tvMovieTitleDetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:hint="Movie Title"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imgPosterImageDetail"
+                app:layout_constraintTop_toTopOf="@id/imgPosterImageDetail" />
+
+            <TextView
+                android:id="@+id/tvMoviePopularity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawableStart="@drawable/ic_community"
+                android:drawablePadding="10dp"
+                android:hint="62390.098"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="@id/tvMovieTitleDetail"
+                app:layout_constraintStart_toStartOf="@id/tvMovieTitleDetail"
+                app:layout_constraintTop_toBottomOf="@id/tvMovieTitleDetail" />
+
+            <TextView
+                android:id="@+id/tvMovieVote"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawableStart="@drawable/ic_starrating"
+                android:drawablePadding="10dp"
+                android:hint="8.5"
+                android:textSize="16dp"
+
+                app:layout_constraintEnd_toEndOf="@id/tvMoviePopularity"
+                app:layout_constraintStart_toStartOf="@id/tvMoviePopularity"
+                app:layout_constraintTop_toBottomOf="@id/tvMoviePopularity" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="15dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintTop_toBottomOf="@id/tvMovieReleaseDate" />
+
+
+            <TextView
+                android:id="@+id/overviewlayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
+                android:padding="5dp"
+                android:text="Overview"
+
+                android:textSize="15dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider" />
+
+            <TextView
+                android:id="@+id/tvMovieOverview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:hint="Movie Overview..."
+                android:justificationMode="inter_word"
+                android:lineSpacingExtra="4dp"
+                android:padding="5dp"
+                android:scrollbars="vertical"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/overviewlayout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
